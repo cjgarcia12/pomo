@@ -101,7 +101,7 @@ const Page = () => {
 
     return (
         <main className={`grid gap-1 justify-center items-center w-full h-screen ${isAlarm ? "bg-red-600" : "bg-amber-200"} font-customFont`}>
-            <audio loop ref={audioRef} src={'/nextjs-github-pages/alarm-clock-90867.mp3'} />
+            <audio loop ref={audioRef} src={'./alarm-clock-90867.mp3'} />
             <Card className='w-[350px] bg-amber-100 md:w-[500px]'>
                 <CardHeader>
                     <CardTitle>Pomodoro Timer</CardTitle>
