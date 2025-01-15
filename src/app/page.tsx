@@ -24,18 +24,30 @@ import {
 } from "@/components/ui/dialog"
 import {useState, useEffect, useRef} from "react";
 
-type CardProps = React.ComponentProps<typeof Card>
+interface CardProps extends React.ComponentProps<typeof Card> {
+    searchParams?: Record<string, string>;
+}
 
 
-const Page = ({ className, ...props}: CardProps) => {
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Page = ({ className, searchParams, ...props}: CardProps) => {
     const audioRef = useRef<HTMLAudioElement>(null);
 
     const [studyTime, setStudyTime] = useState<number>(() => {
-        return parseInt(localStorage.getItem('studyTime') || '25', 10)
+        if (typeof window !== 'undefined') {
+            return parseInt(localStorage.getItem('studyTime') || '25', 10);
+        }
+        return 25; // Default value for SSR
     });
+
     const [breakTime, setBreakTime] = useState<number>(() => {
-        return parseInt(localStorage.getItem('breakTime') || '5', 10)
+        if (typeof window !== 'undefined') {
+            return parseInt(localStorage.getItem('breakTime') || '5', 10);
+        }
+        return 5; // Default value for SSR
     });
+
     const [isRunning, setIsRunning] = useState<boolean>(false)
     const [timeLeft, setTimeLeft] = useState<number>(25 * 60)
     const [isStudy, setIsStudy] = useState<boolean>(true)
