@@ -8,7 +8,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import {cn} from "@/lib/utils";
 import Circle from "@/components/ui/circle";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -24,14 +23,7 @@ import {
 } from "@/components/ui/dialog"
 import {useState, useEffect, useRef} from "react";
 
-interface CardProps extends React.ComponentProps<typeof Card> {
-    searchParams?: Record<string, string>;
-}
-
-
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Page = ({ className, searchParams, ...props}: CardProps) => {
+const Page = () => {
     const audioRef = useRef<HTMLAudioElement>(null);
 
     const [studyTime, setStudyTime] = useState<number>(() => {
@@ -110,7 +102,7 @@ const Page = ({ className, searchParams, ...props}: CardProps) => {
     return (
         <main className={`grid gap-1 justify-center items-center w-full h-screen ${isAlarm ? "bg-red-600" : "bg-amber-200"} font-customFont`}>
             <audio loop ref={audioRef} src={'./alarm-clock-90867.mp3'} />
-            <Card className={cn("w-[350px] bg-amber-100 md:w-[500px]", className)} {...props}>
+            <Card className='w-[350px] bg-amber-100 md:w-[500px]'>
                 <CardHeader>
                     <CardTitle>Pomodoro Timer</CardTitle>
                     <CardDescription>Click opotions to review timers</CardDescription>
